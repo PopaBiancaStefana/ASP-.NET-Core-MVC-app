@@ -1,12 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using PieShop.Models;
 using PieShop.Models.Repositories.Interfaces;
-using PieShop.Models.Repositories.Mocks;
+using PieShop.Models.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IPieRepository, PieRepository>();
+
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<ICategoryRepository, MockCategoryRepository>();
-builder.Services.AddScoped<IPieRepository, MockPieRepository>();
+builder.Services.AddDbContext<PieShopDbContext>(options => {
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:PieShopDbContextConnection"]);
+});
 
 var app = builder.Build();
 
@@ -18,5 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapDefaultControllerRoute();
+
+DbInitializer.Seed(app);
 
 app.Run();
