@@ -18,7 +18,20 @@ namespace PieShop.Controllers
         public IActionResult List()
         {
             PieListViewModel pieList = new(_pieRepository.AllPies, "Cheese cakes");
+ 
             return View(pieList);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var pie = _pieRepository.GetPieById(id);
+
+            if (pie == null)
+            {
+                return NotFound();
+            }
+
+            return View(pie);
         }
     }
 }

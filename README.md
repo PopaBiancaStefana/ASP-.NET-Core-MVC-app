@@ -83,7 +83,7 @@
     </ul>
   </li>
   <li>
-    <input type="checkbox" id="interactive-search-page" name="interactive-search-page">
+    <input type="checkbox" id="interactive-search-page" name="interactive-search-page" checked>
     <label for="interactive-search-page">Views, Routes and Navigation</label>
   </li>
   <li>

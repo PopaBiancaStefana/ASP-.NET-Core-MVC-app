@@ -23,7 +23,10 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.MapDefaultControllerRoute();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Pie}/{action=List}"
+);
 
 DbInitializer.Seed(app);
 
