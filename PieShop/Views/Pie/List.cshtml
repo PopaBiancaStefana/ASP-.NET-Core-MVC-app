@@ -9,7 +9,12 @@
             <div class="card pie-card">
                 <img src="@pie.ImageThumbnailUrl" class="card-img-top" alt="@pie.Name">
                 <div class="card-body pie-button">
-                    <h4 class="d-grid"></h4>
+                    <h4 class="d-grid">
+                        <a class="btn btn-secondary"
+                        asp-controller="ShoppingCart"
+                        asp-action="AddToShoppingCart"
+                        asp-route-pieId="@pie.PieId">+ Add to cart</a>
+                    </h4>
 
                     <div class="d-flex justify-content-between mt-2">
                         <h2 class="text-start">
